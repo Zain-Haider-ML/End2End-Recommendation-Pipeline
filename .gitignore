@@ -1,0 +1,31 @@
+# Ignore dataset files (you don't want to upload large datasets to GitHub)
+ml-100k.zip
+ml-100k/
+
+# Ignore Python bytecode files
+*.pyc
+*.pyo
+__pycache__/
+
+# Ignore virtual environments
+venv/
+env/
+
+# Ignore IDE/editor configurations
+.vscode/
+.idea/
+
+# Ignore log files and temp files
+*.log
+*.bak
+*.swp
+
+# Ignore Docker-related files
+docker-compose.yml
+
+# Ignore Jupyter notebooks checkpoints
+.ipynb_checkpoints/
+
+# Ignore any other files that are not needed in version control
+*.env
+*.db

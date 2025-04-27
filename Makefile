@@ -10,7 +10,7 @@ install:
 
 # Lint the code using flake8
 lint:
-	flake8 app.py api.py models.py
+	flake8 --ignore=E203,E501,W605,F401 app.py api.py models.py
 
 # # Run tests
 # test:

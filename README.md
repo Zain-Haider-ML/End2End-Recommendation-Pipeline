@@ -23,7 +23,6 @@ The system has been built with a modular architecture including:
 - [CI/CD Pipeline](#cicd-pipeline)
 - [File Structure](#file-structure)
 - [Algorithms](#algorithms)
-- [License](#license)
 
 ---
 
@@ -71,8 +70,8 @@ Alternatively, the Docker container comes pre-configured with all dependencies.
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/yourusername/movie-recommendation-system.git
-   cd movie-recommendation-system
+   git clone https://github.com/Zain-Haider-ML/End2End-Recommendation-Pipeline.git
+   cd End2End-Recommendation-Pipeline
    ```
 
 2. **Install Dependencies:**
@@ -126,7 +125,7 @@ The project can be containerized using Docker. The `Dockerfile` will create an i
 2. **Run Docker Container:**
 
    ```bash
-   docker run -p 5000:5000 movie-recommendation
+   docker run -p 8501:8501 movie-recommendation
    ```
 
 ### Azure Deployment

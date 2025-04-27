@@ -33,7 +33,7 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker build -t streamlit-app -f Dockerfile.streamlit .
+        docker build -t streamlit-app -f Dockerfile .
 
     - name: Push to Azure (or other cloud)
       run: |

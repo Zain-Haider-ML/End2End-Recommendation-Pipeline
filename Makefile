@@ -16,6 +16,9 @@ lint:
 # test:
 # 	pytest tests/
 
+prediction:
+	bash make_prediction.sh
+
 # Run Streamlit app locally
 run-streamlit:
 	streamlit run app.py

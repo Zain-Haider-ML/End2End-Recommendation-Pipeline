@@ -1,17 +1,15 @@
-import pandas as pd
-import numpy as np
 import os
-import zipfile
 import urllib.request
+import zipfile
 
+import numpy as np
+import pandas as pd
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LinearRegression
 from sklearn.metrics.pairwise import cosine_similarity
 from surprise import SVD, Dataset, Reader
 from surprise.model_selection import train_test_split
-
-from sklearn.linear_model import LinearRegression
-from sklearn.ensemble import RandomForestRegressor
-
 
 # Download
 url = "http://files.grouplens.org/datasets/movielens/ml-100k.zip"

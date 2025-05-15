@@ -1,6 +1,7 @@
 # app.py
 import streamlit as st
-from models import recommend, get_movie_title
+
+from models import get_movie_title, recommend
 
 st.set_page_config(page_title="Hybrid Recommender", layout="centered")
 st.title("🎬 Movie Recommender System")

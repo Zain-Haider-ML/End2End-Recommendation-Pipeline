@@ -1,7 +1,10 @@
-from flask import Flask, request, jsonify, render_template_string, redirect, url_for
-from models import recommend, predict_rating, get_movie_title
+from flask import (Flask, jsonify, redirect, render_template_string, request,
+                   url_for)
+
+from models import get_movie_title, predict_rating, recommend
 
 app = Flask(__name__)
+
 
 # Home UI
 @app.route("/", methods=["GET", "POST"])
@@ -43,6 +46,7 @@ def home():
     """
     return render_template_string(html)
 
+
 # API: Predict Rating (actual endpoint)
 @app.route("/predict", methods=["GET"])
 def predict():
@@ -53,14 +57,17 @@ def predict():
 
     try:
         score = predict_rating(user_id, movie_id, model=model, alpha=alpha)
-        return jsonify({
-            "user_id": user_id,
-            "movie_id": movie_id,
-            "model": model,
-            "predicted_rating": score
-        })
+        return jsonify(
+            {
+                "user_id": user_id,
+                "movie_id": movie_id,
+                "model": model,
+                "predicted_rating": score,
+            }
+        )
     except Exception as e:
         return jsonify({"error": str(e)}), 400
+
 
 # API: Recommend Movies (actual endpoint)
 @app.route("/recommend", methods=["GET"])
@@ -75,26 +82,21 @@ def recommend_api():
 
         if isinstance(recs, dict):  # For mixed models
             output = {
-                "collaborative": [get_movie_title(mid) for mid in recs["collaborative"]],
+                "collaborative": [
+                    get_movie_title(mid) for mid in recs["collaborative"]
+                ],
                 "content": [get_movie_title(mid) for mid in recs["content"]],
             }
         else:
             output = [
-                {
-                    "movie_id": mid,
-                    "title": get_movie_title(mid),
-                    "score": score
-                }
+                {"movie_id": mid, "title": get_movie_title(mid), "score": score}
                 for mid, score in recs
             ]
 
-        return jsonify({
-            "user_id": user_id,
-            "model": model,
-            "recommendations": output
-        })
+        return jsonify({"user_id": user_id, "model": model, "recommendations": output})
     except Exception as e:
         return jsonify({"error": str(e)}), 400
+
 
 # Form Action: Do Predict (handles form submission)
 @app.route("/do_predict", methods=["POST"])
@@ -102,8 +104,9 @@ def do_predict():
     user_id = request.form.get("user_id")
     movie_id = request.form.get("movie_id")
     model = request.form.get("model", "meta")
-    
-    return redirect(url_for('predict', user_id=user_id, movie_id=movie_id, model=model))
+
+    return redirect(url_for("predict", user_id=user_id, movie_id=movie_id, model=model))
+
 
 # Form Action: Do Recommend (handles form submission)
 @app.route("/do_recommend", methods=["POST"])
@@ -112,7 +115,8 @@ def do_recommend():
     model = request.form.get("model", "meta")
     top_n = request.form.get("top_n", 5)
 
-    return redirect(url_for('recommend_api', user_id=user_id, model=model, top_n=top_n))
+    return redirect(url_for("recommend_api", user_id=user_id, model=model, top_n=top_n))
+
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)

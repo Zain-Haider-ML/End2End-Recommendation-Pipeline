@@ -21,11 +21,11 @@ prediction:
 
 # Run Streamlit app locally
 run-streamlit:
-	streamlit run app.py
+	streamlit run api.py
 
 # Run Flask API locally
 run-flask:
-	$(PYTHON) api.py
+	$(PYTHON) app.py
 
 # Build Docker image for Streamlit
 docker-build-streamlit:

@@ -12,7 +12,7 @@ app = Flask(__name__)
 @app.route("/", methods=["GET", "POST"])
 def home():
     html = """
-    <h1>🎬 Movie Recommendation User Interface</h1>
+    <h1>🎬 Movie Recommendation User Interface Chomoloko</h1>
     
     <form action="/do_predict" method="post">
         <h2>🔹 Predict Single Movie Rating</h2>

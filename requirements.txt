@@ -10,3 +10,4 @@ streamlit==1.44.1
 flake8
 black 
 pytest
+gunicorn

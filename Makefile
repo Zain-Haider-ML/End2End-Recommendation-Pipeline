@@ -3,6 +3,9 @@ PYTHON=python
 PIP=pip
 APP_NAME_STREAMLIT=streamlit-app
 APP_NAME_FLASK=flask-api
+HOST=0.0.0.0
+PORT=5000
+GUNICORN_WORKERS=4
 
 # Install all dependencies
 install:
@@ -24,8 +27,12 @@ run-streamlit:
 	streamlit run api.py
 
 # Run Flask API locally
-run-flask:
+run-flask-dev:
 	$(PYTHON) app.py
+
+# ✅ Run Flask API using Gunicorn (recommended for production-like env)
+run-flask:
+	gunicorn -w $(GUNICORN_WORKERS) -b $(HOST):$(PORT) app:app
 
 # Build Docker image for Streamlit
 docker-build-streamlit:
@@ -37,7 +44,7 @@ docker-run-streamlit:
 
 # Build Docker image for Flask
 docker-build-flask:
-	docker build -t $(APP_NAME_FLASK) -f Dockerfile.flask .
+	docker build -t $(APP_NAME_FLASK) .
 
 # Run Docker container for Flask
 docker-run-flask:

@@ -120,6 +120,6 @@ def do_recommend():
     return redirect(url_for("recommend_api", user_id=user_id, model=model, top_n=top_n))
 
 
-# if __name__ == "__main__":
-#     port = int(os.environ.get("PORT", 5000))  
-#     app.run(debug=True, host="0.0.0.0", port=port)
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))  
+    app.run(debug=True, host="0.0.0.0", port=port)

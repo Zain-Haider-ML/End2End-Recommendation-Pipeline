@@ -6,13 +6,13 @@ steps:
     args: [
       'build',
       '-t',
-      'us-central1-docker.pkg.dev/my-gcp-project/my-docker-repo/flask-api:latest',
+      'us-central1-docker.pkg.dev/xenon-pager-460322-v3/flask-docker-repo/flask-api:latest',
       '.'
     ]
   - name: 'gcr.io/cloud-builders/docker'
     args: [
       'push',
-      'us-central1-docker.pkg.dev/my-gcp-project/my-docker-repo/flask-api:latest'
+      'us-central1-docker.pkg.dev/xenon-pager-460322-v3/flask-docker-repo/flask-api:latest'
     ]
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
@@ -21,7 +21,7 @@ steps:
       'deploy',
       'flask-api-service',
       '--image',
-      'us-central1-docker.pkg.dev/my-gcp-project/my-docker-repo/flask-api:latest',
+      'us-central1-docker.pkg.dev/xenon-pager-460322-v3/flask-docker-repo/flask-api:latest',
       '--region',
       'us-central1',
       '--platform',
@@ -30,4 +30,4 @@ steps:
     ]
 
 images:
-  - 'us-central1-docker.pkg.dev/my-gcp-project/my-docker-repo/flask-api:latest'
+  - 'us-central1-docker.pkg.dev/xenon-pager-460322-v3/flask-docker-repo/flask-api:latest'
